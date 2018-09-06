@@ -14,23 +14,33 @@ use Vzool\URL\URL;
 
 $http = new URL('https://jsonplaceholder.typicode.com');
 
-// for GET
+// to GET
+
 $result = $http->GET('/posts/1');
 
-// for POST
+// to POST
+
 $result = $http->POST('/posts', [
   "title" => "Agreement",
   "body" => "Ha ha ha",
   "author" => "Aziz",
 ]);
 
-// for PUT
+// to PUT
+
 $result = $http->PUT('/posts/1', [
   "title" => "Agreement #2",
 ]);
 
-// for DELETE
+// to DELETE
+
 $result = $http->DELETE('/posts/1');
+
+// or
+
+$result = $http->delete('/posts/1');
+
+// to get result
 
 print_r($result->content()); // returns stdClass objects :)
 print_r($result->toArray()); // returns array
