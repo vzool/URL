@@ -1,6 +1,6 @@
 ## RESTful Library using `file_get_contents` only
 
-### install
+### Install
 
 ```shell
 composer require vzool/url
