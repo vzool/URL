@@ -3,7 +3,7 @@
 namespace Vzool\URL;
 
 /**
- * RESTful Library using file_get_contents only
+ * A Simple RESTful HTTP Client Library using `file_get_contents` only
  * https://www.vzool.net
  * (c) Abdelaziz Elrashed <aeemh.sdn@gmail.com>
  */

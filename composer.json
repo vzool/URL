@@ -1,6 +1,6 @@
 {
     "name": "vzool/url",
-    "description": "RESTful Client Library using file_get_contents only",
+    "description": "A Simple RESTful HTTP Client Library using file_get_contents only",
     "type": "library",
     "license": "MIT",
     "authors": [
