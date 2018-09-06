@@ -18,5 +18,5 @@ $result = $http->GET('/posts/1');
 
 print_r($result->content()); // returns stdClass objects :)
 print_r($result->toArray()); // returns array
-print_r($result->toJson());  // returns raw response, I'm a JSON Patroit ;)
+print_r($result->toJson());  // returns raw response, I'm a JSON Patriot ;)
 ```
