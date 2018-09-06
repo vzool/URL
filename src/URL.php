@@ -73,7 +73,7 @@ class URL
 	private function protocol()
 	{
 		$schema = explode('://', $this->base_url);
-		return $schema[0];
+		return isset($schema[0]) ? $schema[0] : 'http';
 	}
 
 	private function headers()
