@@ -1,0 +1,20 @@
+{
+    "name": "vzool/url",
+    "description": "RESTful Library using file_get_contents only",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdelaziz Elrashed",
+            "email": "aeemh.sdn@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vzool\\URL\\": "src/"
+        }
+    }
+}
