@@ -1,4 +1,4 @@
-## RESTful Library using `file_get_contents` only
+## RESTful Client Library using `file_get_contents` only
 
 ### Install
 
