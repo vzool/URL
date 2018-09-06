@@ -17,9 +17,10 @@ class URL
 	public $response;
 	public $error;
 
-	function __construct($base_url = 'http://localhost', $headers = ['Content-Type' => 'application/json; charset=UTF-8'])
+	function __construct($base_url = 'http://localhost', $headers = [])
 	{
 		$this->base_url = $base_url;
+
 		$this->headers = $headers;
 	}
 
@@ -46,7 +47,7 @@ class URL
 			array(
 				'method'  => $method,
 				'header'  => $client->headers(),
-				'content' => $parameters,
+				'content' => $parameters ? http_build_query($parameters) : ''
 			)
 		);
 
@@ -76,13 +77,13 @@ class URL
 
 	private function headers()
 	{
-		$headers = [];
+		$headers = ['Content-type: application/x-www-form-urlencoded'];
 
 		foreach($this->headers as $key => $value){
 			$headers []= "{$key}: {$value}";
 		}
 
-		return implode('\r\n', $headers);
+		return implode(PHP_EOL, $headers);
 	}
 
 	public function toJson()
