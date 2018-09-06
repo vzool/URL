@@ -18,7 +18,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "POST:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->POST($URI, [
+$result = $http->post($URI, [
   "name" => uniqid(),
 ]);
 
@@ -32,7 +32,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "GET ALL:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->GET($URI);
+$result = $http->get($URI);
 
 print_r($result->content());
 
@@ -42,7 +42,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "GET ONE:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->GET($URI . $new_customer->id);
+$result = $http->get($URI . $new_customer->id);
 
 print_r($result->content());
 
@@ -52,7 +52,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "PUT:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->PUT($URI . $new_customer->id, [
+$result = $http->put($URI . $new_customer->id, [
   "name" => $new_customer->name . "-" . uniqid(),
 ]);
 print_r($result->content());
@@ -63,7 +63,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "DELETE:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->DELETE($URI . $new_customer->id);
+$result = $http->delete($URI . $new_customer->id);
 
 // HEAD
 
@@ -71,7 +71,7 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "HEAD:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->HEAD($URI);
+$result = $http->head($URI);
 
 // OPTIONS
 
@@ -79,6 +79,6 @@ echo PHP_EOL . "----------------";
 echo PHP_EOL . "OPTIONS:";
 echo PHP_EOL . "----------------" . PHP_EOL;
 
-$result = $http->OPTIONS($URI);
+$result = $http->options($URI);
 
 print_r($result->content());

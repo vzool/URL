@@ -20,7 +20,6 @@ class URL
 	function __construct($base_url = 'http://localhost', $headers = [])
 	{
 		$this->base_url = $base_url;
-
 		$this->headers = $headers;
 	}
 
@@ -31,8 +30,10 @@ class URL
 			'DELETE', 'HEAD', 'OPTIONS',
 		];
 
-		if(preg_grep( "/{$method}/i" , $allowed)){
-			return $this->execute($args[0], $method, $args[1] ?? '');
+		$method = strtoupper($method);
+
+		if(in_array($method, $allowed)){
+			return $this->execute($args[0], $method, isset($args[1]) ? $args[1] : []);
 		}
 		return false;
 	}
@@ -62,7 +63,7 @@ class URL
 			$client->context  = stream_context_create($client->options);
 			$client->response = file_get_contents($client->path, false, $client->context);
 
-		}catch(Exception $ex){
+		}catch(\Exception $ex){
 			$client->error = $ex;
 		}
 
