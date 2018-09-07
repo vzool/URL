@@ -192,7 +192,7 @@ class CrudTest extends TestCase
 
 		// check header sent
 
-		foreach($local_headers as $key => $value){
+		foreach($local_headers as $key => $value) {
 
 			$this->assertEquals($content->HEADERS->{$key}, $value);
 		}

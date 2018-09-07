@@ -41,7 +41,7 @@ class URL
 
 		$method = strtoupper($method);
 
-		if(in_array($method, $allowed)){
+		if(in_array($method, $allowed)) {
 			return $this->execute($args[0], $method, isset($args[1]) ? $args[1] : []);
 		}
 		return false;
@@ -61,13 +61,13 @@ class URL
 			)
 		);
 
-		if($client->base_url){
+		if($client->base_url) {
 			if($client->path[0] != '/' && substr($client->base_url, -1) != '/')
 				$client->path = '/' . $client->path;
 			$client->path = $client->base_url . $client->path;
 		}
 
-		try{
+		try {
 			
 			$client->context  = stream_context_create($client->options);
 			
@@ -76,7 +76,7 @@ class URL
 				'headers' => $http_response_header,
 			];
 
-		}catch(\Exception $ex){
+		}catch(\Exception $ex) {
 			$client->error = $ex;
 		}
 
@@ -93,7 +93,7 @@ class URL
 	{
 		$headers = ['Content-type: application/x-www-form-urlencoded'];
 
-		foreach($this->headers as $key => $value){
+		foreach($this->headers as $key => $value) {
 			$headers []= "{$key}: {$value}";
 		}
 
@@ -102,7 +102,7 @@ class URL
 
 	public function getStatusCode()
 	{
-		if(isset($this->response->headers)){
+		if(isset($this->response->headers)) {
 			$sections = explode(' ', $this->response->headers[0]);
 			return $sections[1];
 		}
