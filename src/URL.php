@@ -21,6 +21,15 @@ class URL
 	{
 		$this->base_url = $base_url;
 		$this->headers = $headers;
+
+		return $this;
+	}
+
+	public static function __callStatic($method, $args)
+	{
+		$url = new self($args[0], isset($args[1]) ? $args[1] : []);
+
+		return $url->{$method}('/', isset($args[2]) ? $args[2] : []);
 	}
 
 	function __call($method, $args)
@@ -61,7 +70,11 @@ class URL
 		try{
 			
 			$client->context  = stream_context_create($client->options);
-			$client->response = file_get_contents($client->path, false, $client->context);
+			
+			$client->response = (object) [
+				'body' => file_get_contents($client->path, false, $client->context),
+				'headers' => $http_response_header,
+			];
 
 		}catch(\Exception $ex){
 			$client->error = $ex;
@@ -87,9 +100,17 @@ class URL
 		return implode(PHP_EOL, $headers);
 	}
 
+	public function getStatusCode()
+	{
+		if(isset($this->response->headers)){
+			$sections = explode(' ', $this->response->headers[0]);
+			return $sections[1];
+		}
+	}
+
 	public function toJson()
 	{
-		return $this->response;
+		return $this->response->body;
 	}
 
 	public function toArray()
@@ -99,6 +120,6 @@ class URL
 
 	public function content($assoc = FALSE)
 	{
-		return json_decode($this->response, $assoc);
+		return json_decode($this->response->body, $assoc);
 	}
 }
