@@ -1,6 +1,7 @@
 ## A Simple RESTful HTTP Client Library using `file_get_contents` only
 [![Latest Stable Version](https://poser.pugx.org/vzool/URL/version)](https://packagist.org/packages/vzool/URL)
 [![License](https://poser.pugx.org/vzool/URL/license)](https://packagist.org/packages/vzool/URL)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vzool/URL/badges/quality-score.png?b=master)]
 [![Build Status](https://travis-ci.org/vzool/URL.svg?branch=master)](https://travis-ci.org/vzool/URL)
 
 ### Install
