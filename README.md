@@ -1,4 +1,5 @@
 ## A Simple RESTful HTTP Client Library using `file_get_contents` only
+[![Build Status](https://travis-ci.org/vzool/URL.svg?branch=master)](https://travis-ci.org/vzool/URL)
 
 ### Install
 
