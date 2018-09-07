@@ -1,6 +1,6 @@
 <?php
 
-namespace Vzool\URL;
+namespace vzool\URL;
 
 /**
  * A Simple RESTful HTTP Client Library using `file_get_contents` only

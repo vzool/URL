@@ -6,7 +6,9 @@
     "authors": [
         {
             "name": "Abdelaziz Elrashed",
-            "email": "aeemh.sdn@gmail.com"
+            "email": "aeemh.sdn@gmail.com",
+            "homepage": "https://vzool.net",
+            "role": "Lead"
         }
     ],
     "require": {
@@ -14,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vzool\\URL\\": "src/"
+            "vzool\\URL\\": "src/"
         }
     },
     "require-dev": {

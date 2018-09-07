@@ -14,7 +14,7 @@ composer require vzool/url
 ```php
 require_once __DIR__.'/vendor/autoload.php';
 
-use Vzool\URL\URL;
+use vzool\URL\URL;
 
 $http = new URL('https://jsonplaceholder.typicode.com');
 

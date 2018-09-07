@@ -1,6 +1,6 @@
 <?php
 
-use Vzool\URL\URL;
+use vzool\URL\URL;
 use PHPUnit\Framework\TestCase;
 use donatj\MockWebServer\MockWebServer;
 
