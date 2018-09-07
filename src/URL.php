@@ -32,7 +32,7 @@ class URL
 		return $url->{$method}('/', isset($args[2]) ? $args[2] : []);
 	}
 
-	function __call($method, $args = [''])
+	function __call($method, $args)
 	{
 		$allowed = [
 			'GET', 'POST', 'PUT', 'PATCH',

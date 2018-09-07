@@ -2,19 +2,22 @@
 
 use vzool\URL\URL;
 use PHPUnit\Framework\TestCase;
+use donatj\MockWebServer\Response;
 use donatj\MockWebServer\MockWebServer;
+use donatj\MockWebServer\ResponseStack;
 
 class CrudTest extends TestCase
 {
 	private $http;
 	private $url;
+	private $server;
 
 	protected function setUp()
 	{
-		$server = new MockWebServer;
-		$server->start();
+		$this->server = new MockWebServer;
+		$this->server->start();
 
-		$this->url = $server->getServerRoot();
+		$this->url = $this->server->getServerRoot();
 		$this->http = new URL($this->url);
 	}
 
@@ -197,5 +200,21 @@ class CrudTest extends TestCase
 			$this->assertEquals($content->HEADERS->{$key}, $value);
 		}
 	}
+
+	/*public function test_404(){
+
+		$url = $this->server->getUrlOfResponse(
+			new ResponseStack(
+				new Response("Response One", [ 'X-Boop-Bat' => 'Sauce' ], 500),
+				new Response("Response Two", [ 'X-Slaw-Dawg: FranCran' ], 400)
+			)
+		);
+
+		$http = new URL($url);
+
+		$result = $http->get('/');
+
+		print_r($result);
+	}*/
 }
 ?>
