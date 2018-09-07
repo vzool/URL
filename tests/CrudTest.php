@@ -7,13 +7,15 @@ use donatj\MockWebServer\MockWebServer;
 class CrudTest extends TestCase
 {
 	private $http;
+	private $url;
 
 	protected function setUp()
 	{
 		$server = new MockWebServer;
 		$server->start();
 
-		$this->http = new URL($server->getServerRoot());
+		$this->url = $server->getServerRoot();
+		$this->http = new URL($this->url);
 	}
 
 	public function testGET()
@@ -68,6 +70,8 @@ class CrudTest extends TestCase
 		
 		$content = $result->content();
 
+		$this->assertEquals($result->getStatusCode(), 200);
+
 		// check type
 
 		$this->assertInstanceOf(stdClass::class, $content->_GET);
@@ -89,6 +93,109 @@ class CrudTest extends TestCase
 		// check sent data
 
 		$this->assertEquals($content->_GET->{$key}, $value);
+	}
+
+	public function testPost()
+	{
+		$value = uniqid();
+
+		$result = $this->http->post('', [
+		  "name" => $value,
+		]);
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+
+		$this->assertEquals($content->_POST->name, $value);
+
+		$this->assertEquals($content->PARSED_INPUT->name, $value);
+	}
+
+	public function testPut()
+	{
+		$value = uniqid();
+
+		$result = $this->http->put('', [
+		  "name" => $value,
+		]);
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+
+		$this->assertEquals(strtoupper($content->METHOD), 'PUT');
+
+		$this->assertEquals($content->PARSED_INPUT->name, $value);
+	}
+
+	public function testHead()
+	{
+		$value = uniqid();
+
+		$result = $this->http->head();
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+	}
+
+	public function testOptions()
+	{
+		$value = uniqid();
+
+		$result = $this->http->options('', [
+		  "name" => $value,
+		]);
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+
+		$this->assertEquals(strtoupper($content->METHOD), 'OPTIONS');
+
+		$this->assertEquals($content->PARSED_INPUT->name, $value);
+	}
+
+	public function testDelete()
+	{
+		$value = uniqid();
+
+		$result = $this->http->delete('', [
+		  "name" => $value,
+		]);
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+
+		$this->assertEquals(strtoupper($content->METHOD), 'DELETE');
+
+		$this->assertEquals($content->PARSED_INPUT->name, $value);
+	}
+
+	public function testHeaders(){
+
+		$local_headers = [
+			'Accept_language' => 'ar',
+			'Authoriztion_X' => sha1(time()),
+			'Created' => date('Y-m-d H:i:s'),
+		];
+
+		$http = new URL($this->url, $local_headers);
+
+		$result = $http->get('/');
+
+		$content = $result->content();
+
+		$this->assertEquals($result->getStatusCode(), 200);
+
+		// check header sent
+
+		foreach($local_headers as $key => $value){
+
+			$this->assertEquals($content->HEADERS->{$key}, $value);
+		}
 	}
 }
 ?>
