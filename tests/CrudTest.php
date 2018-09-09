@@ -102,7 +102,7 @@ class CrudTest extends TestCase
 	{
 		$value = uniqid();
 
-		$result = $this->http->post('', [
+		$result = $this->http->post('/', [
 		  "name" => $value,
 		]);
 
@@ -119,7 +119,7 @@ class CrudTest extends TestCase
 	{
 		$value = uniqid();
 
-		$result = $this->http->put('', [
+		$result = $this->http->put('/', [
 		  "name" => $value,
 		]);
 
@@ -147,7 +147,7 @@ class CrudTest extends TestCase
 	{
 		$value = uniqid();
 
-		$result = $this->http->options('', [
+		$result = $this->http->options('/', [
 		  "name" => $value,
 		]);
 
@@ -164,7 +164,7 @@ class CrudTest extends TestCase
 	{
 		$value = uniqid();
 
-		$result = $this->http->delete('', [
+		$result = $this->http->delete('/', [
 		  "name" => $value,
 		]);
 

@@ -42,12 +42,16 @@ class URL
 		$method = strtoupper($method);
 
 		if (in_array($method, $allowed)) {
-			return $this->execute($args[0], $method, isset($args[1]) ? $args[1] : []);
+			return $this->execute(
+				isset($args[0]) ? $args[0] : '/',
+				$method,
+				isset($args[1]) ? $args[1] : []
+			);
 		}
 		return false;
 	}
 
-	private function execute($path, $method = 'GET', $parameters = [])
+	private function execute($path = '/', $method = 'GET', $parameters = [])
 	{
 		$client = clone $this;
 
