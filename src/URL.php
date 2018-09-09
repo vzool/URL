@@ -36,7 +36,7 @@ class URL
 	{
 		$allowed = [
 			'GET', 'POST', 'PUT', 'PATCH',
-			'DELETE', 'HEAD', 'OPTIONS',
+			'DELETE', 'HEAD', 'OPTIONS', 'TRACE',
 		];
 
 		$method = strtoupper($method);
